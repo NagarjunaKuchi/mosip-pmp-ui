@@ -1,0 +1,7 @@
+{
+    "/misps":{
+        "target":"http://localhost:8888/pmp",
+        "secure":false,
+        "changeOrigin":true
+    }
+}
