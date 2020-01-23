@@ -23,4 +23,9 @@ export class MispService {
     console.log(JSON.stringify(request));
     return this.http.get("/misps", httpOptions);
   }
+
+  getMispDetails(request: RequestModel): Observable<any> {    
+    console.log(JSON.stringify(request));
+    return this.http.get("/misps/"+request.request.id, httpOptions);
+  }
 }

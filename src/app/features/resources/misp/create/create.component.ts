@@ -47,11 +47,13 @@ import {
     headerObject: HeaderModel;
     centerRequest = {} as CenterRequest;
     createUpdate = false;
+    misp:QueryModel;
   
     primaryForm: FormGroup;
     secondaryForm: FormGroup;
   
     data = [];
+
     popupMessages: any;
   
     selectedField: HTMLElement;
@@ -99,7 +101,7 @@ import {
         if (routeParts[routeParts.length - 2] === 'single-view') {
           this.auditService.audit(8, mispSpecFile.auditEventIds[1], 'misps');
           this.disableForms = true;
-          this.getData(params);
+          this.getData(params); 
         } else {
           this.auditService.audit(16, 'ADM-096');
           this.initializeheader();
@@ -161,8 +163,6 @@ import {
         if (response && this.data.length === 0) {
           this.auditService.audit(18, 'ADM-104', 'create');
           this.saveData();
-          // this.primaryForm.reset();
-          // this.secondaryForm.reset();
         } else if (response && this.data.length !== 0) {
           this.auditService.audit(18, 'ADM-105', 'edit');
           this.updateData();
@@ -180,13 +180,19 @@ import {
         this.primaryForm.controls.name.value,
         this.primaryForm.controls.address.value,
         this.primaryForm.controls.contactPhone.value,
-        this.primaryForm.controls.email_id.value  
+        this.primaryForm.controls.email_id.value,
+        false,
+        this.headerObject.id,
+        ""
       );
       const secondaryObject = new MispModel(        
         this.secondaryForm.controls.name.value,
         this.secondaryForm.controls.address.value,
         this.secondaryForm.controls.contactPhone.value,
-        this.secondaryForm.controls.email_id.value        
+        this.secondaryForm.controls.email_id.value,
+        false,
+        this.headerObject.id,
+        ""        
       );
       const request = new RequestModel(
         appConstants.registrationCenterCreateId,
@@ -255,13 +261,19 @@ import {
         this.primaryForm.controls.name.value,
         this.primaryForm.controls.address.value,
         this.primaryForm.controls.contactPhone.value,
-        this.primaryForm.controls.email_id.value        
+        this.primaryForm.controls.email_id.value,
+        false,   
+        this.headerObject.id,
+        ''
       );
       const secondaryObject = new MispModel(        
         this.primaryForm.controls.name.value,
         this.primaryForm.controls.address.value,
         this.primaryForm.controls.contactPhone.value,
-        this.primaryForm.controls.email_id.value        
+        this.primaryForm.controls.email_id.value,
+        false,
+        this.headerObject.id,
+        ''
       );
       const primaryRequest = new RequestModel(
         appConstants.registrationCenterCreateId,
@@ -310,15 +322,17 @@ import {
       this.centerRequest.languageCode = this.primaryLang;
       this.centerRequest.sort = [];
       this.centerRequest.pagination = { pageStart: 0, pageFetch: 10 };
+      this.misp = new QueryModel();
+      this.misp.id = params.id;
       let request = new RequestModel(
         appConstants.registrationCenterCreateId,
         null,
-        this.centerRequest
+        this.misp
       );
-      this.mispService.getRegistrationMispDetails(request).subscribe(
+      this.mispService.getMispDetails(request).subscribe(
         response => {
-          if (response.response.data) {
-            this.data[0] = response.response.data[0];
+          if (response.response) {            
+            this.data[0] = response.response;            
             this.initializeheader();
             this.setPrimaryFormValues();
             this.centerRequest.languageCode = this.secondaryLang;
@@ -375,8 +389,8 @@ import {
   
     setPrimaryFormValues() {
       this.primaryForm.controls.name.setValue(this.data[0].name);
-      this.primaryForm.controls.contactPhone.setValue(this.data[0].contactPhone);
-      this.primaryForm.controls.email_id.setValue(this.data[0].email_id);
+      this.primaryForm.controls.contactPhone.setValue(this.data[0].contactNumber);
+      this.primaryForm.controls.email_id.setValue(this.data[0].emailId);
       this.primaryForm.controls.address.setValue(this.data[0].address);
     }
   
@@ -561,4 +575,18 @@ import {
       }
     }
   }
+
+  export class QueryModel{
+    constructor(
+    ){}
+
+    public name : string;
+    public address:string;
+    public contactNumber:string;
+    public emailId:string;
+    public isActive:boolean;
+    public id:string;
+    public mispStatus:string;
+
+}
   

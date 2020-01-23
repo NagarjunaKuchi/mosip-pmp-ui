@@ -27,13 +27,6 @@ const routes: Routes = [
           import('./features/masterdata/masterdata.module').then(
             m => m.MasterdataModule
           )
-      },
-      {
-        path: 'packet-status',
-        loadChildren: () =>
-          import('./features/packet-status/packet-status.module').then(
-            m => m.PacketStatusModule
-          )
       }
     ], canActivateChild : [AuthguardService]
     },

@@ -3,5 +3,15 @@
         "target":"http://localhost:8888/pmp",
         "secure":false,
         "changeOrigin":true
+    },    
+    "/misps/*/status":{
+        "target":"http://localhost:8888/pmp",
+        "secure":false,
+        "changeOrigin":true
+    },
+    "/misps/*":{
+        "target":"http://localhost:8888/pmp",
+        "secure":false,
+        "changeOrigin":true
     }
 }

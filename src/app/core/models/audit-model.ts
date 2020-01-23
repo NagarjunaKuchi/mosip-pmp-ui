@@ -15,6 +15,6 @@ export class AuditModel {
     constructor(
         public actionTimeStamp: string = Utils.getCurrentDate(),
         public applicationId: string = '10009',
-        public applicationName: string = 'Admin Portal',
+        public applicationName: string = 'Partner Management Portal',
     ) {}
 }

@@ -9,6 +9,7 @@ import { RequestModel } from '../models/request.model';
 import * as appConstants from '../../app.constants';
 import { CenterModel } from '../models/center.model';
 import { AuditService } from './audit.service';
+import { MispModel } from '../models/misp.model';
 
 @Injectable({
   providedIn: 'root'
@@ -73,13 +74,13 @@ export class CommonService {
     this.showMessage(obj);
   }
 
-  private updateCenter(callingFunction: string, data: CenterModel) {
+  private updateMisp(callingFunction: string, data: MispModel) {
     const request = new RequestModel(
       appConstants.registrationCenterCreateId,
       null,
       data
     );
-    this.dataService.updateCenter(request).subscribe(
+    this.dataService.updateMisp(request).subscribe(
       response => {
         if (!response.errors || response.errors.length === 0) {
           this.createMessage('success', callingFunction, request.request.name);
@@ -92,31 +93,40 @@ export class CommonService {
     );
   }
 
-  private mapDataToObject(data: any): CenterModel {
-    const primaryObject = new CenterModel(
-      data.addressLine1,
-      data.addressLine2,
-      data.addressLine3,
-      data.centerEndTime,
-      data.centerStartTime,
-      data.centerTypeCode,
-      data.contactPerson,
-      data.contactPhone,
-      data.holidayLocationCode,
-      this.appService.getConfig().primaryLangCode,
-      data.latitude,
-      data.postalCode,
-      data.longitude,
-      data.lunchEndTime,
-      data.lunchStartTime,
+  private approveMisp(callingFunction: string, data: MispModel) {
+    const request = new RequestModel(
+      appConstants.registrationCenterCreateId,
+      null,
+      data
+    );
+    this.dataService.approveMisp(request).subscribe(
+      response => {
+        if (!(response['errors'].length != 0)) {
+          this.createMessage('success', 'decommission', data.name);
+          if (this.router.url.indexOf('single-view') >= 0) {
+            this.router.navigateByUrl('admin/resources/misp/view');
+          } else {
+            this.router.navigateByUrl(this.router.url);
+          }
+        } else {
+          this.createMessage('error', 'decommission');
+        }
+      },
+      error => {
+        this.createMessage('error', 'decommission');
+      }
+    ); 
+  }
+
+  private mapDataToObject(data: any): MispModel {
+    const primaryObject = new MispModel(
       data.name,
-      data.perKioskProcessTime,
-      data.timeZone,
-      data.workingHours,
-      data.zoneCode,
-      data.id,
+      data.address,
+      data.contactNumber,
+      data.emailId,
       data.isActive,
-      data.numberOfKiosks
+      data.id,
+      data.mispStatus    
     );
     return primaryObject;
   }
@@ -132,7 +142,7 @@ export class CommonService {
     this.router.navigateByUrl(url + '?editable=true');
   }
 
-  decommissionCenter(data: any, url: string, idKey: string) {
+  decommissionCenter(data: any, url: string, idKey: string) {    
     if (this.router.url.indexOf('single-view') >= 0) {
       this.auditService.audit(10, 'ADM-085', {
         buttonName: 'decommission',
@@ -151,23 +161,10 @@ export class CommonService {
     this.confirmationPopup('decommission', data.name).afterClosed().subscribe(res => {
       if (res) {
         this.auditService.audit(18, 'ADM-098', 'decommission');
-        this.dataService.decommissionCenter(data[idKey]).subscribe(
-          response => {
-            if (!response['errors']) {
-              this.createMessage('success', 'decommission', data.name);
-              if (this.router.url.indexOf('single-view') >= 0) {
-                this.router.navigateByUrl('admin/resources/centers/view');
-              } else {
-                this.router.navigateByUrl(this.router.url);
-              }
-            } else {
-              this.createMessage('error', 'decommission');
-            }
-          },
-          error => {
-            this.createMessage('error', 'decommission');
-          }
-        );
+        const centerObject = this.mapDataToObject(data);        
+        centerObject.mispStatus ="approved"
+        console.log(centerObject);
+        this.approveMisp('decommission',centerObject);
       } else {
         this.auditService.audit(19, 'ADM-099', 'decommission');
       }
@@ -195,8 +192,9 @@ export class CommonService {
         this.auditService.audit(18, 'ADM-100', 'activate');
         const centerObject = this.mapDataToObject(data);
         centerObject.isActive = true;
+        centerObject.mispStatus ="Active"
         console.log(centerObject);
-        this.updateCenter('activate', centerObject);
+        this.updateMisp('activate', centerObject);
       } else {
         this.auditService.audit(19, 'ADM-101', 'activate');
       }
@@ -225,8 +223,9 @@ export class CommonService {
         this.auditService.audit(18, 'ADM-102', 'deactivate');
         const centerObject = this.mapDataToObject(data);
         centerObject.isActive = false;
+        centerObject.mispStatus = "De-Active";
         console.log(centerObject);
-        this.updateCenter('deactivate', centerObject);
+        this.updateMisp('deactivate', centerObject);
       } else {
         this.auditService.audit(19, 'ADM-103', 'deactivate');
       }

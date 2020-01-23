@@ -51,9 +51,20 @@ export class DataStorageService {
     console.log(this.popupMessages);
     return this.popupMessages;
   }
+  updateMisp(data: RequestModel): Observable<any> {
+    return this.http.put("/misps/" +data.request.id ,data
+    );
+  }
+
+  approveMisp(data: RequestModel): Observable<any> {
+    return this.http.post("/misps/" + data.request.id +
+    '/status',data
+    );
+  }
+
   updateCenter(data: RequestModel): Observable<any> {
-    return this.http.put(
-      this.BASE_URL + appConstants.MASTERDATA_BASE_URL + 'registrationcenters',
+    return this.http.post(
+      '/misps/'+data.request.id,
       data
     );
   }
@@ -116,11 +127,12 @@ export class DataStorageService {
 
   decommissionCenter(centerId: string) {
     return this.http.put(
-      this.BASE_URL +
-        appConstants.MASTERDATA_BASE_URL +
-        'registrationcenters/' +
-        'decommission/' +
-        centerId,
+      // this.BASE_URL +
+      //   appConstants.MASTERDATA_BASE_URL +
+      //   'registrationcenters/' +
+        '/misps/' +
+        centerId +
+        '/status',
       {}
     );
   }

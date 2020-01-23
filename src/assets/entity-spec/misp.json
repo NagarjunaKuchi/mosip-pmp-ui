@@ -27,7 +27,7 @@
     },
     {
       "buttonName": {
-        "eng": "Decommission",
+        "eng": "Approve",
         "ara": "وقف التشغيل",
         "fra": "mettre hors service"
       },
@@ -44,7 +44,7 @@
         "fra": "modifier"
       },
       "actionURL": "",
-      "redirectURL": "/admin/resources/centers/single-view/$id",
+      "redirectURL": "/admin/resources/misp/single-view/$id",
       "showIn": "Ellipsis",
       "validations": "",
       "callBackFunction": "centerEdit"
@@ -92,6 +92,15 @@
         "LinkURL": ""  
     },
     {
+      "name": "isActive",
+      "showInListView": "true",
+      "label": { "eng": "IsActive", "ara": "اسم المركز", "fra": "Nom du centre" },
+      "sortOrder": "",
+      "showAsLink": "",
+      "linkType": "",
+      "LinkURL": ""  
+  },
+    {
         "name": "contactNumber",
         "showInListView": "true",
         "label": { "eng": "Phone.No", "ara": "اسم المركز", "fra": "Nom du centre" },
@@ -112,7 +121,7 @@
     {
         "name": "status_code",
         "showInListView": "true",
-        "label": { "eng": "MispStaus", "ara": "اسم المركز", "fra": "Nom du centre" },
+        "label": { "eng": "Status", "ara": "اسم المركز", "fra": "Nom du centre" },
         "sortOrder": "3",
         "showAsLink": "",
         "linkType": "",

@@ -13,19 +13,19 @@
             <mat-form-field>
               <input #keyboardRef #name (focus)="scrollPage(name, 'primary', 'name', 0)" formControlName="name" matInput placeholder="{{ 'misp.name' | translate }}">            
               <mat-error *ngIf="primary.name.touched && primary.name.hasError('required')">
-                {{ 'center.validationMessages.name.required' | translate }}
+                {{ 'misp.validationMessages.name.required' | translate }}
               </mat-error>
               <mat-error *ngIf="primary.name.touched && primary.name.hasError('maxlength')">
-                {{ 'center.validationMessages.name.max-length' | translate }}
+                {{ 'misp.validationMessages.name.max-length' | translate }}
               </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input #keyboardRef #address (focus)="scrollPage(address, 'primary', 'address', 1)" formControlName="address" matInput placeholder="{{ 'misp.address' | translate }}">            
               <mat-error *ngIf="primary.address.touched && primary.address.hasError('required')">
-                {{ 'center.validationMessages.name.required' | translate }}
+                {{ 'misp.validationMessages.name.required' | translate }}
               </mat-error>
               <mat-error *ngIf="primary.address.touched && primary.address.hasError('maxlength')">
-                {{ 'center.validationMessages.name.max-length' | translate }}
+                {{ 'misp.validationMessages.name.max-length' | translate }}
               </mat-error>
             </mat-form-field>
             <mat-form-field>

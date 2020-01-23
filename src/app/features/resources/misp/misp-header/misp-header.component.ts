@@ -58,7 +58,7 @@ export class MispHeaderComponent implements OnInit {
       this.commonService[specData.callBackFunction](
         this.data,
         specData.redirectURL,
-        appConstants.ListViewIdKeyMapping.centers.idKey
+        appConstants.ListViewIdKeyMapping.misp.idKey
       );
     }
   }

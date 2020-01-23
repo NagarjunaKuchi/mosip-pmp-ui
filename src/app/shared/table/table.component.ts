@@ -192,5 +192,20 @@ export class TableComponent implements OnInit, OnChanges {
       myTableStyles.textTransform = 'uppercase';
       return myTableStyles;
     }
+    if (columnValue === 'approved' && columnName === 'status_code') {
+      myTableStyles.backgroundColor = '#C2F2DA';
+      myTableStyles.padding = '5px';
+      myTableStyles.border = '1px solid #4AD991';
+      myTableStyles.borderRadius = '7px';
+      myTableStyles.textTransform = 'uppercase';
+      return myTableStyles;
+    } else if (columnValue === 'Inprogress' && columnName === 'status_code') {
+      myTableStyles.backgroundColor = '#CECFD0';
+      myTableStyles.padding = '5px';
+      myTableStyles.border = '1px solid #9C9F9F';
+      myTableStyles.borderRadius = '7px';
+      myTableStyles.textTransform = 'uppercase';
+      return myTableStyles;
+    }
   }
 }
