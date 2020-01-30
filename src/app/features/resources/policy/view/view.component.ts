@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CenterRequest } from 'src/app/core/models/centerRequest.model';
-import { MispService } from 'src/app/core/services/misp.service';
+import { PolicyService } from 'src/app/core/services/policy.service';
 import { RequestModel } from 'src/app/core/models/request.model';
 import { AppConfigService } from 'src/app/app-config.service';
 import { SortModel } from 'src/app/core/models/sort.model';
 import { PaginationModel } from 'src/app/core/models/pagination.model';
-import * as mispConfig from 'src/assets/entity-spec/misp.json';
+import * as policyConfig from 'src/assets/entity-spec/policy.json';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import Utils from '../../../../app.utils';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
@@ -35,7 +35,7 @@ export class ViewComponent implements OnInit, OnDestroy {
   filtersApplied = false;
 
   constructor(
-    private mispService: MispService,
+    private mispService: PolicyService,
     private appService: AppConfigService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -57,7 +57,7 @@ export class ViewComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.auditService.audit(3, mispConfig.auditEventIds[0], 'misp');
+    this.auditService.audit(3, policyConfig.auditEventIds[0], 'policy');
   }
 
   OrderByArray(values: any[], orderType: any) { 
@@ -75,15 +75,15 @@ export class ViewComponent implements OnInit, OnDestroy {
   }
 
   getMispConfigs() {
-    this.displayedColumns = mispConfig.mispList;
+    this.displayedColumns = policyConfig.columnsToDisplay;
     console.log(this.displayedColumns);
-    this.actionButtons = mispConfig.actionButtons.filter(
+    this.actionButtons = policyConfig.actionButtons.filter(
       value => value.showIn.toLowerCase() === 'ellipsis'
     );
-    this.actionEllipsis = mispConfig.actionButtons.filter(
+    this.actionEllipsis = policyConfig.actionButtons.filter(
       value => value.showIn.toLowerCase() === 'button'
     );
-    this.paginatorOptions = mispConfig.paginator;
+    this.paginatorOptions = policyConfig.paginator;
   }
 
   pageEvent(event: any) {
@@ -94,7 +94,7 @@ export class ViewComponent implements OnInit, OnDestroy {
     filters.pagination.pageFetch = event.pageSize;
     filters.pagination.pageStart = event.pageIndex;
     const url = Utils.convertFilterToUrl(filters);
-    this.router.navigateByUrl(`admin/resources/misp/view?${url}`);
+    this.router.navigateByUrl(`admin/resources/policy/view?${url}`);
   }
 
   getSortColumn(event: SortModel) {
@@ -115,7 +115,7 @@ export class ViewComponent implements OnInit, OnDestroy {
     );
     filters.sort = this.sortFilter;
     const url = Utils.convertFilterToUrl(filters);
-    this.router.navigateByUrl('admin/resources/misp/view?' + url);
+    this.router.navigateByUrl('admin/resources/policy/view?' + url);
   }
 
   getRegistredMisps() {
@@ -133,7 +133,7 @@ export class ViewComponent implements OnInit, OnDestroy {
     this.requestModel = new RequestModel("", null, filters);
     console.log(JSON.stringify(this.requestModel));
     this.mispService
-      .getRegistrationMispDetails(this.requestModel)
+      .getPolicyDetails(this.requestModel)
       .subscribe(({ response, errors }) => {
         console.log(response);
         if (response != null) {
@@ -141,10 +141,14 @@ export class ViewComponent implements OnInit, OnDestroy {
           this.paginatorOptions.pageIndex = filters.pagination.pageStart;
           this.paginatorOptions.pageSize = filters.pagination.pageFetch;
           console.log(this.paginatorOptions);
-          if (response.mispList !== null) {
-            console.log(response.mispList);
-            console.log(...response.mispList);
-            this.misps = response.mispList ? [...response.mispList] : [];            
+          if (response.policies !== null) {
+            console.log(response.policies);
+            console.log(...response.policies);
+            response.policies.forEach(element => {
+              this.misps.push(element.policy)
+            })
+            console.log(this.misps);
+            //this.misps = response.policies ? [...response.policies] : [];            
           } else {
             this.noData = true;         
           }

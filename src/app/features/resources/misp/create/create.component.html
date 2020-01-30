@@ -22,16 +22,16 @@
             <mat-form-field>
               <input #keyboardRef #address (focus)="scrollPage(address, 'primary', 'address', 1)" formControlName="address" matInput placeholder="{{ 'misp.address' | translate }}">            
               <mat-error *ngIf="primary.address.touched && primary.address.hasError('required')">
-                {{ 'misp.validationMessages.name.required' | translate }}
+                {{ 'misp.validationMessages.address.required' | translate }}
               </mat-error>
               <mat-error *ngIf="primary.address.touched && primary.address.hasError('maxlength')">
-                {{ 'misp.validationMessages.name.max-length' | translate }}
+                {{ 'misp.validationMessages.address.max-length' | translate }}
               </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input #keyboardRef #contactPhone (focus)="scrollPage(contactPhone, 'primary', 'contactPhone', 2)" formControlName="contactPhone" matInput placeholder="{{ 'misp.contact_no' | translate }}">            
               <mat-error *ngIf="primary.contactPhone.touched && primary.contactPhone.hasError('required')">
-                {{ 'misp.validationMessages.name.required' | translate }}
+                {{ 'misp.validationMessages.phoneNo.required' | translate }}
               </mat-error>
               <mat-error *ngIf="primary.contactPhone.touched && primary.contactPhone.hasError('maxlength')">
                 {{ 'misp.validationMessages.name.max-length' | translate }}
@@ -40,7 +40,7 @@
             <mat-form-field>
               <input formControlName="email_id" matInput placeholder="{{ 'misp.email_id' | translate }}">            
               <mat-error *ngIf="primary.email_id.touched && primary.email_id.hasError('required')">
-                {{ 'misp.validationMessages.name.required' | translate }}
+                {{ 'misp.validationMessages.email.required' | translate }}
               </mat-error>
               <mat-error *ngIf="primary.email_id.touched && primary.email_id.hasError('maxlength')">
                 {{ 'misp.validationMessages.name.max-length' | translate }}

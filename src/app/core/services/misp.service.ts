@@ -21,11 +21,11 @@ export class MispService {
 
   getRegistrationMispDetails(request: RequestModel): Observable<any> {    
     console.log(JSON.stringify(request));
-    return this.http.get("/misps", httpOptions);
+    return this.http.get("/misps",httpOptions);
   }
 
   getMispDetails(request: RequestModel): Observable<any> {    
     console.log(JSON.stringify(request));
-    return this.http.get("/misps/"+request.request.id, httpOptions);
+    return this.http.get("/misps/" + request.request.id, httpOptions);
   }
 }

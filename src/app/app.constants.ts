@@ -25,69 +25,27 @@ export const navItems = [
     icon: 'assets/images/support.svg',
     route: 'admin/resources',
     children: [
-      // {
-      //   displayName: 'menuItems.item2.subItem1',
-      //   icon: null,
-      //   route: '/admin/resources/centers',
-      //   auditEventId: 'ADM-004',
-      //   roles: ['ZONAL_ADMIN', 'GLOBAL_ADMIN']
-      // },
-      // {
-      //   displayName: 'menuItems.item2.subItem2',
-      //   icon: null,
-      //   route: '/admin/resources/devices',
-      //   auditEventId: 'ADM-005',
-      //   roles: ['ZONAL_ADMIN', 'GLOBAL_ADMIN']
-      // },
-      // {
-      //   displayName: 'menuItems.item2.subItem3',
-      //   icon: null,
-      //   route: '/admin/resources/users',
-      //   auditEventId: 'ADM-006',
-      //   roles: ['ZONAL_ADMIN', 'GLOBAL_ADMIN']
-      // },
-      // {
-      //   displayName: 'menuItems.item2.subItem4',
-      //   icon: null,
-      //   route: '/admin/resources/machines',
-      //   auditEventId: 'ADM-007',
-      //   roles: ['ZONAL_ADMIN', 'GLOBAL_ADMIN']
-      // },
       {
-        displayName: 'menuItems.item2.subItem5',
+        displayName: 'menuItems.item2.subItem1',
         icon: null,
         route: '/admin/resources/misp',
         auditEventId: 'ADM-007',
+        roles: ['ZONAL_ADMIN', 'GLOBAL_ADMIN']
+      },
+      {
+        displayName: 'menuItems.item2.subItem2',
+        icon: null,
+        route: '/admin/resources/policy',
+        auditEventId: 'ADM-008',
         roles: ['ZONAL_ADMIN', 'GLOBAL_ADMIN']
       }
     ],
     auditEventId: 'ADM-003',
     roles: ['ZONAL_ADMIN', 'GLOBAL_ADMIN']
   }
-  // ,
-  // {
-  //   displayName: 'menuItems.item4.title',
-  //   icon: './assets/images/id-card.svg',
-  //   route: '/admin/packet-status',
-  //   children: null,
-  //   auditEventId: 'ADM-008',
-  //   roles: ['ZONAL_ADMIN']
-  // },
-  // {
-  //   displayName: 'menuItems.item3.title',
-  //   icon: './assets/images/id-card.svg',
-  //   route: '/admin/masterdata',
-  //   children: null,
-  //   auditEventId: 'ADM-009',
-  //   roles: ['GLOBAL_ADMIN']
-  // }
 ];
 
 export const MASTERDATA_BASE_URL = `masterdata/`;
-export const processingTimeStart = 15;
-export const processingTimeEnd = 45;
-export const processingTimeInterval = 5;
-export const timeSlotsInterval = 30;
 
 export const registrationCenterCreateId = 'string';
 
@@ -102,38 +60,6 @@ export const masterdataMapping = {
     idKey: 'word',
     headerName: 'Blacklisted Words'
   },
-  holiday: {
-    apiName: 'holidays',
-    specFileName: 'holiday-data',
-    name: 'Holiday',
-    nameKey: 'holidayName',
-    idKey: 'holidayId',
-    headerName: 'Holidays'
-  },
-  'document-type': {
-    apiName: 'documenttypes',
-    specFileName: 'document-types',
-    name: 'Document Types',
-    nameKey: 'name',
-    idKey: 'code',
-    headerName: 'Document Type'
-  },
-  location: {
-    apiName: 'locations',
-    specFileName: 'location-data',
-    name: 'Location',
-    nameKey: 'name',
-    idKey: 'postalCode',
-    headerName: 'Location'
-  },
-  'gender-type': {
-    apiName: 'gendertypes',
-    specFileName: 'gender-types',
-    name: 'Gender Type',
-    nameKey: 'name',
-    idKey: 'code',
-    headerName: 'Gender Type'
-  },
   title: {
     apiName: 'title',
     specFileName: 'titles',
@@ -141,92 +67,16 @@ export const masterdataMapping = {
     nameKey: 'titleName',
     idKey: 'code',
     headerName: 'Title'
-  },
-  templates: {
-    apiName: 'templates',
-    specFileName: 'templates',
-    name: 'Templates',
-    nameKey: 'name',
-    idKey: 'id',
-    headerName: 'Templates'
-  },
-  'machine-type': {
-    apiName: 'machinetypes',
-    specFileName: 'machine-type',
-    name: 'Machine Type',
-    nameKey: 'name',
-    idKey: 'code',
-    headerName: 'Machine Type'
-  },
-  'device-types': {
-    apiName: 'devicetypes',
-    specFileName: 'device-type',
-    name: 'Device Type',
-    nameKey: 'name',
-    idKey: 'code',
-    headerName: 'Device Type'
-  },
-  'document-categories': {
-    apiName: 'documentcategories',
-    specFileName: 'document-category',
-    name: 'Document Category',
-    nameKey: 'name',
-    idKey: 'code',
-    headerName: 'Document Category'
-  },
-  'machine-specs': {
-    apiName: 'machinespecifications',
-    specFileName: 'machine-specification',
-    name: 'Machine Specification',
-    nameKey: 'name',
-    idKey: 'id',
-    headerName: 'Machine Specification'
-  },
-  'device-specs': {
-    apiName: 'devicespecifications',
-    specFileName: 'device-specification',
-    name: 'Device Specification',
-    nameKey: 'name',
-    idKey: 'id',
-    headerName: 'Device Specification'
-  },
-  'center-type': {
-    apiName: 'registrationcentertypes',
-    specFileName: 'center-type',
-    name: 'Registration Center Type',
-    nameKey: 'name',
-    idKey: 'code',
-    headerName: 'Registration Center Type'
-  },
-  'individual-type': {
-    apiName: 'individualtypes',
-    specFileName: 'individual-types',
-    name: 'Individual Type',
-    nameKey: 'name',
-    idKey: 'code',
-    headerName: 'Individual Type'
   }
 };
 
-export const ListViewIdKeyMapping = {
-  centers: { idKey: 'id', imagePath: 'assets/images/center-name-icon.png', auditEventId: 'ADM-064' },
-  devices: { idKey: 'id', auditEventId: 'ADM-065' },
-  machines: { idKey: 'id', auditEventId: 'ADM-066' },
-  'machine-type': { idKey: 'code', auditEventId: 'ADM-067' },
+export const ListViewIdKeyMapping = {  
   misp:{ idKey:'id', auditEventId:'ADM-081'},
-  templates: { idKey: 'id', auditEventId: 'ADM-068' },
+  policy:{ idKey:'id', auditEventId:'ADM-082'},
   title: { idKey: 'code', auditEventId: 'ADM-069' },
   'blacklisted-words': { idKey: 'word', auditEventId: 'ADM-070' },
   'document-type': { idKey: 'code', auditEventId: 'ADM-071' },
-  location: { idKey: 'postalCode', auditEventId: 'ADM-072' },
-  'device-specs': { idKey: 'id', auditEventId: 'ADM-073' },
-  'machine-specs': { idKey: 'id', auditEventId: 'ADM-074' },
-  'device-types': { idKey: 'code', auditEventId: 'ADM-075' },
-  'document-categories': { idKey: 'code', auditEventId: 'ADM-076' },
-  'individual-type': { idKey: 'code', auditEventId: 'ADM-077' },
-  'gender-type': { idKey: 'code', auditEventId: 'ADM-078' },
-  'center-type': { idKey: 'code', auditEventId: 'ADM-079' },
-  holiday: { idKey: 'holidayId', auditEventId: 'ADM-080' }
+  'document-categories': { idKey: 'code', auditEventId: 'ADM-076' }
 };
 
 export const FilterMapping = {
@@ -234,29 +84,13 @@ export const FilterMapping = {
     specFileName: 'center',
     apiName: 'registrationcenters'
   },
-  devices: {
-    specFileName: 'devices',
-    apiName: 'devices'
-  },
-  machines: {
-    specFileName: 'machines',
-    apiName: 'machines'
-  },
   'blacklisted-words': {
     apiName: 'blacklistedwords',
     specFileName: 'blacklisted-words'
   },
-  holiday: {
-    apiName: 'holidays',
-    specFileName: 'holiday-data'
-  },
   'document-type': {
     apiName: 'documenttypes',
     specFileName: 'document-types'
-  },
-  location: {
-    apiName: 'locations',
-    specFileName: 'location-data'
   },
   'gender-type': {
     apiName: 'gendertypes',
@@ -266,37 +100,9 @@ export const FilterMapping = {
     apiName: 'title',
     specFileName: 'titles'
   },
-  templates: {
-    apiName: 'templates',
-    specFileName: 'templates'
-  },
-  'machine-type': {
-    apiName: 'machinetypes',
-    specFileName: 'machine-type'
-  },
-  'device-types': {
-    apiName: 'devicetypes',
-    specFileName: 'device-type'
-  },
   'document-categories': {
     apiName: 'documentcategories',
     specFileName: 'document-category'
-  },
-  'machine-specs': {
-    apiName: 'machinespecifications',
-    specFileName: 'machine-specification'
-  },
-  'device-specs': {
-    apiName: 'devicespecifications',
-    specFileName: 'device-specification'
-  },
-  'center-type': {
-    apiName: 'registrationcentertypes',
-    specFileName: 'center-type'
-  },
-  'individual-type': {
-    apiName: 'individualtypes',
-    specFileName: 'individual-types'
   }
 };
 

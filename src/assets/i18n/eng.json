@@ -5,11 +5,8 @@
         },
         "item2": {
             "title": "RESOURCES",
-            "subItem1": "Center",
-            "subItem2": "Devices",
-            "subItem3": "Users",
-            "subItem4": "Machines",
-            "subItem5":"MISP"
+            "subItem1": "MISP",
+            "subItem2": "Policy"
         },
         "item3": {
             "title": "MASTER DATA"
@@ -17,174 +14,7 @@
         "item4": {
             "title": "PACKET STATUS"
         }
-    },
-    "center": {
-        "center-detail-view" : "Center Detail View",
-        "center-name": "Center Name",
-        "center-id": "Center Id",
-        "status": "Status",
-        "created-on": "Created On",
-        "created-by": "Created By",
-        "updated-on": "Updated On",
-        "updated-by": "Updated By",
-        "center-details": "Center Details",
-        "registration-center-name": "Misp Name",
-        "registration-center-type": "Misp Type",
-        "contact-person": "Contact Person - Optional",
-        "contact-number": "Contact Number - Optional",
-        "location-details": "Location Details",
-        "longitude": "Longitude",
-        "latitude": "Latitude",
-        "address1": "Address Line 1",
-        "address2": "Address Line 2 - Optional",
-        "address3": "Address Line 3 - Optional",
-        "region": "Region",
-        "province": "Province",
-        "city": "City",
-        "laa": "Zone",
-        "postal-code": "Postal Code",
-        "zone": "Administrative Zone",
-        "operational-details": "Operational Details",
-        "holiday-zone": "Holiday Zone",
-        "working-hrs": "Working Hours - Optional",
-        "no-kiosk": "No.Kiosk",
-        "per-kiosk-process-time": "Per Kiosk Process Time(minutes)",
-        "start-time": "Start Time",
-        "end-time": "End Time",
-        "lunch-start-time": "Lunch Start time - Optional",
-        "lunch-end-time": "Lunch End Time - Optional",
-        "edit": "Edit",
-        "create": "Create",
-        "cancel": "Cancel",
-        "language": "English",
-        "keyboard-tooltip": "Click for Virtual Keyboard (English)",
-        "isActive": "Is Active",
-        "update": "Update",
-        "validationMessages": {
-            "name": {
-                "required": "Center Name is required",
-                "max-length": "Exceeded max length (128)"
-            },
-            "centerTypeCode": {
-                "required": "Center Type is required"
-            },
-            "contactPerson": {
-                "max-length": "Exceeded max length (128)"
-            },
-            "contactPhone": {
-                "max-length": "Exceeded max length (16)"
-            },
-            "longitude": {
-                "required": "Longitude is required",
-                "max-length": "Exceeded max length (32)",
-                "validLatLong": "Atleast 4 digits after decimal is mandatory",
-                "validNumber": "Please enter digits only"
-            },
-            "latitude": {
-                "required": "Longitude is required",
-                "max-length": "Exceeded max length (32)",
-                "validLatLong": "Atleast 4 digits after decimal is mandatory",
-                "validNumber": "Please enter digits only"
-            },
-            "addressLine1": {
-                "required": "Address Line 1 is required",
-                "max-length": "Exceeded max length (256)"
-            },
-            "addressLine2": {
-                "max-length": "Exceeded max length (256)"
-            },
-            "addressLine3": {
-                "max-length": "Exceeded max length (256)"
-            },
-            "region": {
-                "required": "Region is required"
-            },
-            "province": {
-                "required": "Province is required"
-            },
-            "city": {
-                "required": "City is required"
-            },
-            "laa": {
-                "required": "Zone is required"
-            },
-            "postalCode": {
-                "required": "Postal Code is required"
-            },
-            "zone": {
-                "required": "Administrative Zone is required"
-            },
-            "holidayZone": {
-                "required": "Holiday Zone is required"
-            },
-            "noKiosk": {
-                "required": "Number of Kiosk is required",
-                "min": "Minimum number of Kiosk is 0",
-                "invalidNoKiosk": "Invalid Number of Kiosk Entered"
-            },
-            "processingTime": {
-                "required": "Per Kiosk Processing Time is required"
-            },
-            "startTime": {
-                "required": "Center Start Time is required"
-            },
-            "endTime": {
-                "required": "Center End Time is required"
-            }
-        },
-        "popupMessages": {
-            "create": {
-                "title": "Confirmation",
-                "message": ["You are about to create a Misp in ",". Please ensure that all the information is correct. Center ID will be generated once you Confirm"],
-                "yesBtnText": "Yes",
-                "noBtnText": "No",
-                "mandatorySecondaryFields": "You have not filled the mandatory data in the Secondary language. Misp will be created only in Primary language. Do you still want to continue?"
-            },
-            "edit": {
-                "title": "Confirmation",
-                "message": "You are about to update a Misp. Please ensure that all the information is correct",
-                "yesBtnText": "Confirm",
-                "noBtnText": "Cancel",
-                "mandatorySecondaryFields": "You have not filled the mandatory data in the Secondary language. Misp will be created only in Primary language. Do you still want to continue?"
-            },
-            "update-success": {
-                "title": "Success",
-                "message": "Center is updated Successfully",
-                "btnTxt": "Ok"
-            },
-            "update-error": {
-                "title": "Error",
-                "message": "There was some issue in updating the center. Please try again",
-                "btnTxt": "Ok"
-            },
-            "create-success": {
-                "title": "Success",
-                "message": ["Center is created Successfully with Center ID: ", " and Center Name: "],
-                "btnTxt": "Ok"
-            },
-            "create-error": {
-                "title": "Error",
-                "message": "There was some issue in creating a center. Please try again",
-                "btnTxt": "Ok"
-            },
-            "navigation-popup": {
-                "title": "Confirmation",
-                "message": "Are you sure you want to navigate away from this page? Any unsaved data will be lost.",
-                "yesBtnTxt": "Leave",
-                "noBtnTxt": "Stay"
-            },
-            "noData": {
-                "title": "Error",
-                "message": "No Data Found",
-                "btnTxt": "Ok"
-            },
-            "lunchTimeValidation": {
-                "title": "Error",
-                "message": "Please select center timings before selecting lunch timings",
-                "btnTxt": "Ok"
-            }
-        }
-    },
+    },    
     "singleView": {
         "errorMessages" : [
             "No record found",
@@ -230,11 +60,15 @@
                 "required": "Misp Name is required",
                 "max-length": "Exceeded max length (128)"
             },
-            "contactPerson": {
+            "address": {
+                "required": "Misp Address is required",
                 "max-length": "Exceeded max length (128)"
             },
-            "contactPhone": {
-                "max-length": "Exceeded max length (16)"
+            "phoneNo": {
+                "required": "Misp phoneNo is required"
+            },
+            "email": {
+                "required": "Misp email is required"
             }
         },
         "popupMessages": {
@@ -295,14 +129,6 @@
         "range": "’To’ date cannot be before ‘From’ date'",
         "invalid": "Please select a valid value for Date"
     },
-    "packet-status": {
-        "header": "Packet Status",
-        "text": "Please enter Registration ID to check Packet Status",
-        "error": "Invalid Registration ID Entered",
-        "id": "Registration ID",
-        "status": "Status",
-        "viewMore": "View More"
-    },
     "actionMessages" : {
         "decommission": {
             "success-message": ["The Misp ", " is approved successfully"],
@@ -336,6 +162,87 @@
             "noBtnTxt": "No",
             "confirmation-message": ["Do you want to Deactivate the Misp ", " ? \n You can Activate it later if you wish. Till then it will be set as Inactive"],
             "confirmation-title": "Confirmation"
+        }
+    },
+    "policy":{
+        "header" : "Policy",
+        "name": "Name",
+        "desc":"Description",
+        "id":"Id",
+        "isActive" : "Status",
+        "policy-details": "Policy Details",
+        "created-on": "Created On",
+        "created-by": "Created By",
+        "updated-on": "Updated On",
+        "updated-by": "Updated By",        
+        "edit": "Edit",
+        "create": "Create",
+        "cancel": "Cancel",
+        "language": "English",
+        "keyboard-tooltip": "Click for Virtual Keyboard (English)",
+        "update": "Update",
+        "validationMessages": {
+            "name": {
+                "required": "Policy Name is required",
+                "max-length": "Exceeded max length (128)"
+            },
+            "desc": {
+                "required": "Policy description is required",
+                "max-length": "Exceeded max length (128)"
+            }
+
+        },
+        "popupMessages": {
+            "create": {
+                "title": "Confirmation",
+                "message": ["You are about to create a Policy in ",". Please ensure that all the information is correct. Center ID will be generated once you Confirm"],
+                "yesBtnText": "Yes",
+                "noBtnText": "No",
+                "mandatorySecondaryFields": "You have not filled the mandatory data in the Secondary language. Policy will be created only in Primary language. Do you still want to continue?"
+            },
+            "edit": {
+                "title": "Confirmation",
+                "message": "You are about to update a policy. Please ensure that all the information is correct",
+                "yesBtnText": "Confirm",
+                "noBtnText": "Cancel",
+                "mandatorySecondaryFields": "You have not filled the mandatory data in the Secondary language. Misp will be created only in Primary language. Do you still want to continue?"
+            },
+            "update-success": {
+                "title": "Success",
+                "message": "policy is updated Successfully",
+                "btnTxt": "Ok"
+            },
+            "update-error": {
+                "title": "Error",
+                "message": "There was some issue in updating the policy. Please try again",
+                "btnTxt": "Ok"
+            },
+            "create-success": {
+                "title": "Success",
+                "message": ["Policy is created Successfully."],
+                "btnTxt": "Ok"
+            },
+            "create-error": {
+                "title": "Error",
+                "message": "There was some issue in creating a policy. Please try again",
+                "btnTxt": "Ok"
+            },
+            "navigation-popup": {
+                "title": "Confirmation",
+                "message": "Are you sure you want to navigate away from this page? Any unsaved data will be lost.",
+                "yesBtnTxt": "Leave",
+                "noBtnTxt": "Stay"
+            },
+            "noData": {
+                "title": "Error",
+                "message": "No Data Found",
+                "btnTxt": "Ok"
+            },
+            "lunchTimeValidation": {
+                "title": "Error",
+                "message": "Please select center timings before selecting lunch timings",
+                "btnTxt": "Ok"
+            }
         }
     }
 }

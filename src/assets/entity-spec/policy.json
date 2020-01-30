@@ -1,5 +1,5 @@
 {
-    "auditEventIds": ["ADM-027", "ADM-049"],
+  "auditEventIds": ["ADM-028", "ADM-028"],
   "actionButtons": [
     {
       "buttonName": {
@@ -11,7 +11,7 @@
       "redirectURL": "",
       "showIn": "Ellipsis",
       "validations": "",
-      "callBackFunction": "activateCenter"
+      "callBackFunction": "activatePolicy"
     },
     {
       "buttonName": {
@@ -23,7 +23,7 @@
       "redirectURL": "",
       "showIn": "Ellipsis",
       "validations": "",
-      "callBackFunction": "deactivateCenter"
+      "callBackFunction": "deactivatePolicy"
     },
     {
       "buttonName": {
@@ -35,7 +35,7 @@
       "redirectURL": "",
       "showIn": "Ellipsis",
       "validations": "",
-      "callBackFunction": "decommissionCenter"
+      "callBackFunction": "decommissionPolicy"
     },
     {
       "buttonName": {
@@ -44,21 +44,21 @@
         "fra": "modifier"
       },
       "actionURL": "",
-      "redirectURL": "/admin/resources/misp/single-view/$id",
+      "redirectURL": "/admin/resources/policy/single-view/$id",
       "showIn": "Ellipsis",
       "validations": "",
-      "callBackFunction": "centerEdit"
+      "callBackFunction": "policyEdit"
     },
     {
       "buttonName": {
-        "eng": "Create MISP",
+        "eng": "Create Policy",
         "ara": "إضافة مركز",
         "fra": "Ajouter le centre"
       },
       "imagePath": "assets/images/add-icon.png",
       "actionListType": "redirect",
       "actionURL": "",
-      "redirectURL": "admin/resources/misp/create",
+      "redirectURL": "admin/resources/policy/create",
       "showIn": "Button",
       "validations": ""
     },
@@ -72,7 +72,7 @@
       "validations": ""
     }
   ],
-  "mispList": [
+  "columnsToDisplay": [
     {
         "name": "name",
         "showInListView": "true",
@@ -83,77 +83,14 @@
         "LinkURL": ""  
     },
     {
-        "name": "address",
+        "name": "desc",
         "showInListView": "true",
-        "label": { "eng": "Address", "ara": "اسم المركز", "fra": "Nom du centre" },
+        "label": { "eng": "Desc", "ara": "اسم المركز", "fra": "Nom du centre" },
         "sortOrder": "",
         "showAsLink": "",
         "linkType": "",
         "LinkURL": ""  
-    },
-    {
-      "name": "isActive",
-      "showInListView": "true",
-      "label": { "eng": "IsActive", "ara": "اسم المركز", "fra": "Nom du centre" },
-      "sortOrder": "",
-      "showAsLink": "",
-      "linkType": "",
-      "LinkURL": ""  
-  },
-    {
-        "name": "contactNumber",
-        "showInListView": "true",
-        "label": { "eng": "Phone.No", "ara": "اسم المركز", "fra": "Nom du centre" },
-        "sortOrder": "",
-        "showAsLink": "",
-        "linkType": "",
-        "LinkURL": ""  
-    },
-    {
-        "name": "emailId",
-        "showInListView": "true",
-        "label": { "eng": "Email", "ara": "اسم المركز", "fra": "Nom du centre" },
-        "sortOrder": "",
-        "showAsLink": "",
-        "linkType": "",
-        "LinkURL": ""  
-    },
-    {
-        "name": "status_code",
-        "showInListView": "true",
-        "label": { "eng": "Status", "ara": "اسم المركز", "fra": "Nom du centre" },
-        "sortOrder": "3",
-        "showAsLink": "",
-        "linkType": "",
-        "LinkURL": ""  
-    },
-    {
-      "name": "licensKeyStatus",
-      "showInListView": "true",
-      "label": { "eng": "liceseStatus", "ara": "اسم المركز", "fra": "Nom du centre" },
-      "sortOrder": "3",
-      "showAsLink": "",
-      "linkType": "",
-      "LinkURL": ""  
-    },    
-    {
-        "name": "validFromDate",
-        "showInListView": "true",
-        "label": { "eng": "LicenseValidFrom", "ara": "اسم المركز", "fra": "Nom du centre" },
-        "sortOrder": "3",
-        "showAsLink": "",
-        "linkType": "",
-        "LinkURL": ""  
-    },
-    {
-    "name": "validToDate",
-    "showInListView": "true",
-    "label": { "eng": "LicenseValidTill", "ara": "اسم المركز", "fra": "Nom du centre" },
-    "sortOrder": "3",
-    "showAsLink": "",
-    "linkType": "",
-    "LinkURL": ""  
-    }   
+    }    
 ],
 "paginator": {
   "totalEntries": null,

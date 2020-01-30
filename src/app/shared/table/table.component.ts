@@ -57,6 +57,8 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    console.log('***************************************');
+    console.log(...this.data);
     this.tableData = [...this.data];
     this.columnsOfTableData = [];
     this.displayedColumns.forEach(column => {
@@ -200,6 +202,21 @@ export class TableComponent implements OnInit, OnChanges {
       myTableStyles.textTransform = 'uppercase';
       return myTableStyles;
     } else if (columnValue === 'Inprogress' && columnName === 'status_code') {
+      myTableStyles.backgroundColor = '#CECFD0';
+      myTableStyles.padding = '5px';
+      myTableStyles.border = '1px solid #9C9F9F';
+      myTableStyles.borderRadius = '7px';
+      myTableStyles.textTransform = 'uppercase';
+      return myTableStyles;
+    }
+    if (columnValue === true && columnName === 'licensKeyStatus') {
+      myTableStyles.backgroundColor = '#C2F2DA';
+      myTableStyles.padding = '5px';
+      myTableStyles.border = '1px solid #4AD991';
+      myTableStyles.borderRadius = '7px';
+      myTableStyles.textTransform = 'uppercase';
+      return myTableStyles;
+    } else if (columnValue === false && columnName === 'licensKeyStatus') {
       myTableStyles.backgroundColor = '#CECFD0';
       myTableStyles.padding = '5px';
       myTableStyles.border = '1px solid #9C9F9F';

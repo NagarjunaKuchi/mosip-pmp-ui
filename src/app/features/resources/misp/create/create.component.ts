@@ -155,23 +155,31 @@ import {
           };
         }
       }
-      const dialogRef = this.dialog.open(DialogComponent, {
-        width: '350px',
-        data
-      });
-      dialogRef.afterClosed().subscribe(response => {
-        if (response && this.data.length === 0) {
-          this.auditService.audit(18, 'ADM-104', 'create');
-          this.saveData();
-        } else if (response && this.data.length !== 0) {
-          this.auditService.audit(18, 'ADM-105', 'edit');
-          this.updateData();
-        } else if (!response && this.data.length === 0) {
-          this.auditService.audit(19, 'ADM-106', 'create');
-        } else if (!response && this.data.length !== 0) {
-          this.auditService.audit(19, 'ADM-107', 'edit');
-        }
-      });
+
+      if (this.data.length === 0) {
+        this.auditService.audit(18, 'ADM-104', 'create');
+        this.saveData();
+      } else if (this.data.length !== 0) {
+        this.auditService.audit(18, 'ADM-105', 'edit');
+        this.updateData();
+      }
+      // const dialogRef = this.dialog.open(DialogComponent, {
+      //   width: '350px',
+      //   data
+      // });
+      // dialogRef.afterClosed().subscribe(response => {
+      //   if (response && this.data.length === 0) {
+      //     this.auditService.audit(18, 'ADM-104', 'create');
+      //     this.saveData();
+      //   } else if (response && this.data.length !== 0) {
+      //     this.auditService.audit(18, 'ADM-105', 'edit');
+      //     this.updateData();
+      //   } else if (!response && this.data.length === 0) {
+      //     this.auditService.audit(19, 'ADM-106', 'create');
+      //   } else if (!response && this.data.length !== 0) {
+      //     this.auditService.audit(19, 'ADM-107', 'edit');
+      //   }
+      // });
     }
   
     updateData() {
@@ -431,7 +439,7 @@ import {
     initializePrimaryForm() {
       this.primaryForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.maxLength(128)]],
-        contactPhone: ['', [Validators.maxLength(16)]],
+        contactPhone: ['',[Validators.required, Validators.maxLength(13)]],
         email_id: [
           '',
           [Validators.required, Validators.maxLength(32)]
@@ -446,7 +454,7 @@ import {
     initializeSecondaryForm() {
       this.secondaryForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.maxLength(128)]],
-        contactPhone: [{ value: '', disabled: true }],
+        contactPhone: ['',[Validators.required, Validators.maxLength(13)]],
         email_id: [
           '',
           [Validators.required, Validators.maxLength(32)]

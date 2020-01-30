@@ -15,6 +15,14 @@ export class DataStorageService {
     return this.http.get('./assets/entity-spec/center.json');
   }
 
+  getMispSpecificLabelsAndActions(): Observable<any> {
+    return this.http.get('./assets/entity-spec/misp.json');
+  }
+
+  getPolicySpecificLabelsAndActions(): Observable<any> {
+    return this.http.get('./assets/entity-spec/policy.json');
+  }
+
   getImmediateChildren(
     locationCode: string,
     langCode: string
@@ -43,13 +51,17 @@ export class DataStorageService {
   data = [];
     popupMessages: any;
 
-  createMisp(data: RequestModel): Observable<any> {
-    
-    this.popupMessages = this.http.post(
+  createMisp(data: RequestModel): Observable<any> {    
+    return this.http.post(
       "/misps",data
     );
+  }
+  createPolicy(data: RequestModel): Observable<any> {
+    
+    return this.http.post(
+      "/policies",data
+    );
     console.log(this.popupMessages);
-    return this.popupMessages;
   }
   updateMisp(data: RequestModel): Observable<any> {
     return this.http.put("/misps/" +data.request.id ,data

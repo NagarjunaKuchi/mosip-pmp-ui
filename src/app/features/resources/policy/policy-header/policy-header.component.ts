@@ -3,21 +3,22 @@ import { HeaderModel } from 'src/app/core/models/header.model';
 import { DataStorageService } from 'src/app/core/services/data-storage.service';
 import { AppConfigService } from 'src/app/app-config.service';
 import { CommonService } from 'src/app/core/services/common.service';
-import { MispModel } from 'src/app/core/models/misp.model';
+import { PolicyModel } from 'src/app/core/models/policy.model';
 import * as appConstants from '../../../../app.constants';
+import { PolicyModule } from '../policy.module';
 
 @Component({
-  selector: 'app-misp-header',
-  templateUrl: './misp-header.component.html',
+  selector: 'app-policy-header',
+  templateUrl: './policy-header.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class MispHeaderComponent implements OnInit {
+export class PolicyHeaderComponent implements OnInit {
   actionButtonElipses = new Array();
 
   lang: string;
 
   @Input() headerData: HeaderModel;
-  @Input() data: MispModel;
+  @Input() data: PolicyModel;
 
   constructor(
     private dataSerice: DataStorageService,
@@ -28,7 +29,7 @@ export class MispHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSerice.getCenterSpecificLabelsAndActions().subscribe(data => {
+    this.dataSerice.getPolicySpecificLabelsAndActions().subscribe(data => {
       this.actionButtonElipses = data.actionButtons.filter(
         item => item.showIn === 'Ellipsis'
       );
