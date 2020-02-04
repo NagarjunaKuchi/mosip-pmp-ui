@@ -63,11 +63,21 @@ export class DataStorageService {
     );
     console.log(this.popupMessages);
   }
+
   updateMisp(data: RequestModel): Observable<any> {
     return this.http.put("/misps/" +data.request.id ,data
     );
   }
 
+  updatePolicyStatus(data: RequestModel): Observable<any> {
+    return this.http.put("/policies/" +data.request.id ,data
+    );
+  } 
+
+  updatePolicy(data: RequestModel): Observable<any> {
+    return this.http.post("/policies/" +data.request.id ,data
+    );
+  }
   approveMisp(data: RequestModel): Observable<any> {
     return this.http.post("/misps/" + data.request.id +
     '/status',data

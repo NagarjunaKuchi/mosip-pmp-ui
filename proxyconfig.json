@@ -18,5 +18,10 @@
         "target":"http://localhost:8989/pmp",
         "secure":false,
         "changeOrigin":true
+    },
+    "/policies/*":{
+        "target":"http://localhost:8989/pmp",
+        "secure":false,
+        "changeOrigin":true
     }
 }

@@ -10,8 +10,8 @@
         (pageEvent)="pageEvent($event)"
       ></app-toolbar>
       <app-table
-        *ngIf="misps && displayedColumns && actionButtons"
-        [data]="misps"
+        *ngIf="policies && displayedColumns && actionButtons"
+        [data]="policies"
         [displayedColumns]="displayedColumns"
         [buttonList]="actionButtons"
         [sortData]="sortFilter"

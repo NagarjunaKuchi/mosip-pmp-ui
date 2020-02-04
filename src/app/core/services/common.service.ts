@@ -10,6 +10,7 @@ import * as appConstants from '../../app.constants';
 import { CenterModel } from '../models/center.model';
 import { AuditService } from './audit.service';
 import { MispModel } from '../models/misp.model';
+import { PolicyModel } from '../models/policy.model';
 
 @Injectable({
   providedIn: 'root'
@@ -93,6 +94,25 @@ export class CommonService {
     );
   }
 
+  private updatePolicy(callingFunction: string, data: PolicyModel) {
+    const request = new RequestModel(
+      appConstants.registrationCenterCreateId,
+      null,
+      data
+    );
+    this.dataService.updatePolicyStatus(request).subscribe(
+      response => {
+        if (!response.errors || response.errors.length === 0) {
+          this.createMessage('success', callingFunction, request.request.name);
+          this.router.navigateByUrl(this.router.url);
+        } else {
+          this.createMessage('error', callingFunction);
+        }
+      },
+      error => this.createMessage('error', callingFunction)
+    );
+  }
+
   private approveMisp(callingFunction: string, data: MispModel) {
     const request = new RequestModel(
       appConstants.registrationCenterCreateId,
@@ -131,7 +151,28 @@ export class CommonService {
     return primaryObject;
   }
 
+  private mapDataToPolicyObject(data: any): PolicyModel {
+    const primaryObject = new PolicyModel(
+      data.name,
+      data.desc,
+      data.isActive,
+      data.id    
+    );
+    return primaryObject;
+  }
+
   centerEdit(data: any, url: string, idKey: string) {
+    this.auditService.audit(9, 'ADM-084', {
+      buttonName: 'edit',
+      masterdataName: this.router.url.split('/')[
+        this.router.url.split('/').length - 2
+      ]
+    });
+    url = url.replace('$id', data[idKey]);
+    this.router.navigateByUrl(url + '?editable=true');
+  }
+
+  policyEdit(data: any, url: string, idKey: string) {
     this.auditService.audit(9, 'ADM-084', {
       buttonName: 'edit',
       masterdataName: this.router.url.split('/')[
@@ -226,6 +267,65 @@ export class CommonService {
         centerObject.mispStatus = "De-Active";
         console.log(centerObject);
         this.updateMisp('deactivate', centerObject);
+      } else {
+        this.auditService.audit(19, 'ADM-103', 'deactivate');
+      }
+    });
+  }
+
+  activatePolicy(data: any, url: string, idKey: string) {
+    if (this.router.url.indexOf('single-view') >= 0) {
+      this.auditService.audit(10, 'ADM-086', {
+        buttonName: 'activate',
+        masterdataName: this.router.url.split('/')[
+          this.router.url.split('/').length - 3
+        ]
+      });
+    } else {
+      this.auditService.audit(9, 'ADM-089', {
+        buttonName: 'activate',
+        masterdataName: this.router.url.split('/')[
+          this.router.url.split('/').length - 2
+        ]
+      });
+    }
+    this.confirmationPopup('activate', data.name).afterClosed().subscribe(res => {
+      if (res) {
+        this.auditService.audit(18, 'ADM-100', 'activate');
+        const policyObject = this.mapDataToPolicyObject(data);
+        policyObject.status = 'Active';
+        console.log(policyObject);
+        this.updatePolicy('activate', policyObject);
+      } else {
+        this.auditService.audit(19, 'ADM-101', 'activate');
+      }
+    });
+  }
+
+  deactivatePolicy(data: any, url: string, idKey: string) {
+    if (this.router.url.indexOf('single-view') >= 0) {
+      console.log(this.router.url.split('/'));
+      this.auditService.audit(10, 'ADM-087', {
+        buttonName: 'deactivate',
+        masterdataName: this.router.url.split('/')[
+          this.router.url.split('/').length - 3
+        ]
+      });
+    } else {
+      this.auditService.audit(9, 'ADM-090', {
+        buttonName: 'deactivate',
+        masterdataName: this.router.url.split('/')[
+          this.router.url.split('/').length - 2
+        ]
+      });
+    }
+    this.confirmationPopup('deactivate', data.name).afterClosed().subscribe(res => {
+      if (res) {
+        this.auditService.audit(18, 'ADM-102', 'deactivate');
+        const policyObject = this.mapDataToPolicyObject(data);
+        policyObject.status = 'De-Active';
+        console.log(policyObject);
+        this.updatePolicy('deactivate', policyObject);
       } else {
         this.auditService.audit(19, 'ADM-103', 'deactivate');
       }

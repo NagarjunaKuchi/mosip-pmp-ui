@@ -74,6 +74,15 @@
   ],
   "columnsToDisplay": [
     {
+        "name": "id",
+        "showInListView": "true",
+        "label": { "eng": "ID", "ara": "اسم المركز", "fra": "Nom du centre" },
+        "sortOrder": "",
+        "showAsLink": "",
+        "linkType": "",
+        "LinkURL": ""  
+    },
+    {
         "name": "name",
         "showInListView": "true",
         "label": { "eng": "Name", "ara": "اسم المركز", "fra": "Nom du centre" },
@@ -90,7 +99,25 @@
         "showAsLink": "",
         "linkType": "",
         "LinkURL": ""  
-    }    
+    },
+    {
+      "name": "isActive",
+      "showInListView": "true",
+      "label": { "eng": "IsActive", "ara": "اسم المركز", "fra": "Nom du centre" },
+      "sortOrder": "",
+      "showAsLink": "",
+      "linkType": "",
+      "LinkURL": ""  
+    },
+    {
+      "name" :"AuthPolicies",
+      "showInListView": "true",
+      "label": { "eng": "Link", "ara": "اسم المركز", "fra": "Nom du centre" },
+      "sortOrder": "",
+      "showAsLink": "true",
+      "linkType": "",
+      "LinkURL": "https://www.google.co.in/"  
+    }   
 ],
 "paginator": {
   "totalEntries": null,

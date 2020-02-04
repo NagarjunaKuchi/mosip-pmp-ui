@@ -185,15 +185,14 @@ export class CreateComponent {
     const primaryObject = new PolicyModel(        
       this.primaryForm.controls.name.value,
       this.primaryForm.controls.desc.value,
-      false,
-      ''
-      // this.headerObject.id,
+      '',      
+      this.headerObject.id,
       // ""
     );
     const secondaryObject = new PolicyModel(        
       this.secondaryForm.controls.name.value,
       this.secondaryForm.controls.desc.value,
-      false,
+      '',
       ''
       // this.headerObject.id,
       // ""        
@@ -204,7 +203,7 @@ export class CreateComponent {
       primaryObject
     );
     console.log(request);
-    this.dataStorageService.updateCenter(request).subscribe(updateResponse => {
+    this.dataStorageService.updatePolicy(request).subscribe(updateResponse => {
       console.log(updateResponse);
       if (!updateResponse.errors || updateResponse.errors.length === 0) {
         if (this.secondaryForm.valid) {
@@ -214,7 +213,7 @@ export class CreateComponent {
             secondaryObject
           );
           this.dataStorageService
-            .updateCenter(secondaryRequest)
+            .updatePolicy(secondaryRequest)
             .subscribe(secondaryResponse => {
               if (
                 !secondaryResponse.errors ||
@@ -223,7 +222,7 @@ export class CreateComponent {
                 this.showMessage('update-success')
                   .afterClosed()
                   .subscribe(() => {
-                    this.router.navigateByUrl('admin/resources/centers/view');
+                    this.router.navigateByUrl('admin/resources/policy/view');
                   });
               } else {
                 this.showMessage('update-error');
@@ -264,15 +263,13 @@ export class CreateComponent {
     const primaryObject = new PolicyModel(        
       this.primaryForm.controls.name.value,
       this.primaryForm.controls.desc.value,
-      false,   
-      ''
-      // this.headerObject.id,
-      // ''
+      '',   
+      this.headerObject.id
     );
     const secondaryObject = new PolicyModel(        
       this.primaryForm.controls.name.value,
       this.primaryForm.controls.desc.value,
-      false,
+      '',
       ''
       // this.headerObject.id,
       // ''
@@ -331,7 +328,7 @@ export class CreateComponent {
       null,
       this.policy
     );
-    this.policyService.getPolicyDetails(request).subscribe(
+    this.policyService.getPolicyInfo(request).subscribe(
       response => {
         if (response.response) {            
           this.data[0] = response.response;            

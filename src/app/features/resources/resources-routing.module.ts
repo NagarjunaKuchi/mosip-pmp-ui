@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'centers', pathMatch: 'full' },  
+  { path: '', redirectTo: 'misp', pathMatch: 'full' },  
   { path: 'misp', loadChildren: () => import('../resources/misp/misp.module').then(m => m.MispModule) },
   { path: 'policy', loadChildren: () => import('../resources/policy/policy.module').then(m => m.PolicyModule) }
 ];

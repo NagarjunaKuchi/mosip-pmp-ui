@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { AuditService } from 'src/app/core/services/audit.service';
 import { MispLicenseModel } from 'src/app/core/models/misplicense.model';
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -27,8 +28,8 @@ export class ViewComponent implements OnInit, OnDestroy {
   pagination = new PaginationModel();
   centerRequest = {} as CenterRequest;
   requestModel: RequestModel;
-  misps = [];
-  mispLicense:MispLicenseModel;
+  policies = [];
+  authPolicies = [];
   subscribed: any;
   errorMessages: any;
   noData = false;
@@ -75,7 +76,9 @@ export class ViewComponent implements OnInit, OnDestroy {
   }
 
   getMispConfigs() {
-    this.displayedColumns = policyConfig.columnsToDisplay;
+    this.displayedColumns = policyConfig.columnsToDisplay.filter(
+      values => values.showInListView === 'true'
+    );
     console.log(this.displayedColumns);
     this.actionButtons = policyConfig.actionButtons.filter(
       value => value.showIn.toLowerCase() === 'ellipsis'
@@ -119,7 +122,9 @@ export class ViewComponent implements OnInit, OnDestroy {
   }
 
   getRegistredMisps() {
-    this.misps = [];
+    this.policies = [];
+    this.authPolicies =[];
+
     this.noData = false;
     this.filtersApplied = false;
     const filters = Utils.convertFilter(
@@ -141,14 +146,13 @@ export class ViewComponent implements OnInit, OnDestroy {
           this.paginatorOptions.pageIndex = filters.pagination.pageStart;
           this.paginatorOptions.pageSize = filters.pagination.pageFetch;
           console.log(this.paginatorOptions);
-          if (response.policies !== null) {
-            console.log(response.policies);
-            console.log(...response.policies);
-            response.policies.forEach(element => {
-              this.misps.push(element.policy)
-            })
-            console.log(this.misps);
-            //this.misps = response.policies ? [...response.policies] : [];            
+          if (response.policies !== null) {            
+            console.log(this.policies);
+            this.policies = response.policies ? [...response.policies] : [];
+            if(response.policies.authPolicies !== null){
+              this.authPolicies = response.policies.authPolicies; 
+              this.geneartePolicyFile();             
+            }
           } else {
             this.noData = true;         
           }
@@ -170,6 +174,13 @@ export class ViewComponent implements OnInit, OnDestroy {
         }
       });
   } 
+
+  geneartePolicyFile(){
+    if(this.authPolicies !== null){
+      
+
+    }
+  }
 
   ngOnDestroy() {
     this.subscribed.unsubscribe();

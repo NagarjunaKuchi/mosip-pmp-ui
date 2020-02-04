@@ -22,5 +22,11 @@ export class PolicyService{
     getPolicyDetails(request: RequestModel): Observable<any> {    
         console.log(JSON.stringify(request));
         return this.http.get("/policies",httpOptions);
+    }
+
+    getPolicyInfo(request: RequestModel): Observable<any> {    
+        console.log(JSON.stringify(request));
+        return this.http.get("/policies/" + request.request.id, httpOptions);
       }
+      
 }

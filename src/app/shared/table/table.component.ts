@@ -28,6 +28,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() sort = new EventEmitter();
   tableData = [];
   columnsOfTableData = [];
+  linkColumnsOfTableData =[];
   sortStatusArray: string[] = [];
   currentRoute: string;
   lang: string;
@@ -61,9 +62,17 @@ export class TableComponent implements OnInit, OnChanges {
     console.log(...this.data);
     this.tableData = [...this.data];
     this.columnsOfTableData = [];
+    this.linkColumnsOfTableData = [];
     this.displayedColumns.forEach(column => {
       this.columnsOfTableData.push(column['name']);
     });
+
+    this.displayedColumns.forEach(column => {
+      if(column['showAsLink'] == "true"){
+        this.linkColumnsOfTableData.push(column['name'])
+      }
+    });
+
     this.setSortDirection();
   }
 
@@ -178,6 +187,16 @@ export class TableComponent implements OnInit, OnChanges {
       myTableStyles.color = '#0F2126';
       myTableStyles.cursor = 'pointer';
       return myTableStyles;
+    }
+    if(this.linkColumnsOfTableData.find(x=>x===columnName)){
+      myTableStyles.color = '#0F2126';
+      myTableStyles.cursor = 'pointer';
+      return myTableStyles;
+  // color: white;
+  // padding: 14px 25px;
+  // text-align: center; 
+  // text-decoration: none;
+  // display: inline-block;
     }
     if (columnValue === true && columnName === 'isActive') {
       myTableStyles.backgroundColor = '#C2F2DA';
