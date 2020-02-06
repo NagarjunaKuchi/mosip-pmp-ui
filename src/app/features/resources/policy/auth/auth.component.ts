@@ -15,11 +15,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuditService } from 'src/app/core/services/audit.service';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'auth-app-table',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
 })
-export class TableComponent implements OnInit, OnChanges {
+export class AuthComponent implements OnInit, OnChanges {
   @Input() data: [];
   @Input() displayedColumns: [];
   @Input() buttonList: [];

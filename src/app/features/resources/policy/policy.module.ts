@@ -9,6 +9,7 @@ import { I18nModule } from 'src/app/i18n.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatKeyboardModule } from 'ngx7-material-keyboard';
 import { PolicyRoutingModule } from './policy-routing.module';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
     imports:[
@@ -21,6 +22,6 @@ import { PolicyRoutingModule } from './policy-routing.module';
         FormsModule,
         MatKeyboardModule
     ],
-    declarations:[CreateComponent, ViewComponent, PolicyHeaderComponent]
+    declarations:[CreateComponent, ViewComponent, PolicyHeaderComponent, AuthComponent]
 })
 export class PolicyModule{}

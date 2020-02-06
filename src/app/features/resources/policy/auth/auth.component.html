@@ -1,0 +1,30 @@
+<div id ="flex-single-view">
+  <div id="flex-container">
+    <app-policy-header ></app-policy-header>
+        <div id="policyDiv" class="flex-body">
+            <mat-card>
+              <mat-card-content class="forms-container">
+                <div class="primary-form">
+                  <span width:50px><strong>Auth Policies </strong></span>                 
+                  <hr />
+                  <mat-form-field>
+                    <input #keyboardRef #name formControlName="authPolicyName" matInput placeholder="Auth Policy Name">            
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input #keyboardRef #name formControlName="authPolicyDesc" matInput placeholder="Auth Policy Desc">            
+                  </mat-form-field>
+                  <hr/>
+                  <span>Auth-Policies</span>                 
+                </div>
+                <!-- <div id="AuthpolicyDiv" class="flex-body">
+                  <mat-card>
+                    <mat-card-content class="forms-container">
+                      <span><strong>Auth-Policies </strong></span>                 
+                    </mat-card-content>
+                  </mat-card>
+                </div> -->
+              </mat-card-content>
+            </mat-card>
+          </div>
+  </div>
+</div>
