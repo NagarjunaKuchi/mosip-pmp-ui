@@ -51,6 +51,10 @@ export class CreateComponent {
   secondaryForm: FormGroup;
 
   data = [];
+  allowedKycAttributes =[];
+  authPolicies =[];
+  authPolicy=[];
+  allowedAttributes=[];
 
   popupMessages: any;
 
@@ -102,7 +106,8 @@ export class CreateComponent {
         this.getData(params); 
       } else {
         this.auditService.audit(16, 'ADM-096');
-        this.initializeheader();
+        this.primaryForm.controls.name.disable();
+        //this.initializeheader();
       }
     });
     this.translateService
@@ -161,23 +166,6 @@ export class CreateComponent {
       this.auditService.audit(18, 'ADM-105', 'edit');
       this.updateData();
     }
-    // const dialogRef = this.dialog.open(DialogComponent, {
-    //   width: '350px',
-    //   data
-    // });
-    // dialogRef.afterClosed().subscribe(response => {
-    //   if (response && this.data.length === 0) {
-    //     this.auditService.audit(18, 'ADM-104', 'create');
-    //     this.saveData();
-    //   } else if (response && this.data.length !== 0) {
-    //     this.auditService.audit(18, 'ADM-105', 'edit');
-    //     this.updateData();
-    //   } else if (!response && this.data.length === 0) {
-    //     this.auditService.audit(19, 'ADM-106', 'create');
-    //   } else if (!response && this.data.length !== 0) {
-    //     this.auditService.audit(19, 'ADM-107', 'edit');
-    //   }
-    // });
   }
 
   updateData() {
@@ -246,11 +234,6 @@ export class CreateComponent {
         message:
           type === 'create-success'
             ? this.popupMessages[type].message
-            //[0] 
-              // +
-              // data.id +
-              // this.popupMessages[type].message[1] +
-              // data.name
             : this.popupMessages[type].message,
         btnTxt: this.popupMessages[type].btnTxt
       }
@@ -271,8 +254,6 @@ export class CreateComponent {
       this.primaryForm.controls.desc.value,
       '',
       ''
-      // this.headerObject.id,
-      // ''
     );
     const primaryRequest = new RequestModel(
       appConstants.registrationCenterCreateId,
@@ -331,7 +312,9 @@ export class CreateComponent {
     this.policyService.getPolicyInfo(request).subscribe(
       response => {
         if (response.response) {            
-          this.data[0] = response.response;            
+          this.data[0] = response.response; 
+          this.authPolicy = response.response.authPolicies[0].authPolicies.filter(x=>x.mandatory == true);
+          this.allowedAttributes = response.response.authPolicies[0].allowedKycAttributes.filter(x=>x.required ==true);          
           this.initializeheader();
           this.setPrimaryFormValues();
           this.centerRequest.languageCode = this.secondaryLang;
@@ -340,24 +323,6 @@ export class CreateComponent {
             null,
             this.centerRequest
           );
-          this.policyService
-            .getPolicyDetails(request)
-            .subscribe(secondaryResponse => {
-              this.data[1] = secondaryResponse.response.data
-                ? secondaryResponse.response.data[0]
-                : {};
-              this.setSecondaryFormValues();
-              if (
-                this.activatedRoute.snapshot.queryParams.editable === 'true'
-              ) {
-                this.disableForms = false;
-                this.primaryForm.enable();
-                this.initializeSecondaryForm();
-                this.setSecondaryFormValues();
-                this.primaryForm.controls.noKiosk.enable();
-                this.primaryForm.controls.isActive.enable();
-              }
-            });
         } else {
           this.showErrorPopup();
         }
@@ -389,6 +354,21 @@ export class CreateComponent {
   setPrimaryFormValues() {
     this.primaryForm.controls.name.setValue(this.data[0].name);
     this.primaryForm.controls.desc.setValue(this.data[0].desc);
+    this.authPolicy.forEach(element => {
+      if(element['mandatory'] == true){
+        this.authPolicies.push(element['authType']);
+      }
+    });
+    
+    this.allowedAttributes.forEach(element => {
+      if(element['required'] == true){
+        this.allowedKycAttributes.push(element['attributeName']);
+      }
+    });
+
+    this.primaryForm.controls.authname.setValue(this.authPolicies);
+    this.primaryForm.controls.authdesc.setValue(this.allowedKycAttributes);
+
   }
 
   setSecondaryFormValues() {
@@ -428,7 +408,9 @@ export class CreateComponent {
   initializePrimaryForm() {
     this.primaryForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(128)]],
-      desc: ['', [Validators.maxLength(128)]]
+      desc: ['', [Validators.maxLength(128)]],
+      authname:[],
+      authdesc:[]
     });
     if (this.disableForms) {
       this.primaryForm.disable();
