@@ -117,7 +117,7 @@ export class TableComponent implements OnInit, OnChanges {
         ]);
       } else {
         this.router.navigate([
-          `${this.currentRoute}/auth-view`,
+          `${this.currentRoute}/single-view`,
           data[id.idKey]
         ]);
       }

@@ -247,7 +247,7 @@ export class CreateComponent {
       this.primaryForm.controls.name.value,
       this.primaryForm.controls.desc.value,
       '',   
-      this.headerObject.id
+      ''
     );
     const secondaryObject = new PolicyModel(        
       this.primaryForm.controls.name.value,
@@ -313,8 +313,10 @@ export class CreateComponent {
       response => {
         if (response.response) {            
           this.data[0] = response.response; 
+          if(response.response.authPolicies != null){
           this.authPolicy = response.response.authPolicies[0].authPolicies.filter(x=>x.mandatory == true);
           this.allowedAttributes = response.response.authPolicies[0].allowedKycAttributes.filter(x=>x.required ==true);          
+          }
           this.initializeheader();
           this.setPrimaryFormValues();
           this.centerRequest.languageCode = this.secondaryLang;
