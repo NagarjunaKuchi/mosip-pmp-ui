@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatKeyboardModule } from 'ngx7-material-keyboard';
 import { PolicyRoutingModule } from './policy-routing.module';
 import { AuthComponent } from './auth/auth.component';
+import { AuthpolicyHeaderComponent } from './authPolicies/authpolicy-header/authpolicy-header.component';
 
 @NgModule({
     imports:[
@@ -22,6 +23,6 @@ import { AuthComponent } from './auth/auth.component';
         FormsModule,
         MatKeyboardModule
     ],
-    declarations:[CreateComponent, ViewComponent, PolicyHeaderComponent, AuthComponent]
+    declarations:[CreateComponent, ViewComponent, PolicyHeaderComponent, AuthComponent, AuthpolicyHeaderComponent]
 })
 export class PolicyModule{}

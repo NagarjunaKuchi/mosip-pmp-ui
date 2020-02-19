@@ -29,10 +29,10 @@
                           </mat-error>
                         </mat-form-field>
                         <mat-form-field *ngIf="disableForms">
-                          <input #keyboardRef #name (focus)="scrollPage(authname, 'primary', 'authname', 2)" formControlName="authname" matInput placeholder="{{ 'policy.name' | translate }}">            
+                          <input #keyboardRef #name (focus)="scrollPage(authname, 'primary', 'authname', 2)" formControlName="authname" matInput placeholder="{{ 'policy.authPolicies' | translate }}">            
                         </mat-form-field>
                         <mat-form-field *ngIf="disableForms">
-                          <input #keyboardRef #name (focus)="scrollPage(authdesc, 'primary', 'authdesc', 3)" formControlName="authdesc" matInput placeholder="{{ 'policy.desc' | translate }}">            
+                          <input #keyboardRef #name (focus)="scrollPage(authdesc, 'primary', 'authdesc', 3)" formControlName="authdesc" matInput placeholder="{{ 'policy.allowedKycAttributes' | translate }}">            
                         </mat-form-field>
                         <mat-form-field *ngIf="!disableForms && data.length !== 0">
                           <mat-label>AuthPolicies</mat-label>

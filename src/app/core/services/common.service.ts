@@ -161,7 +161,7 @@ export class CommonService {
     return primaryObject;
   }
 
-  centerEdit(data: any, url: string, idKey: string) {
+  edit(data: any, url: string, idKey: string) {
     this.auditService.audit(9, 'ADM-084', {
       buttonName: 'edit',
       masterdataName: this.router.url.split('/')[
@@ -183,7 +183,7 @@ export class CommonService {
     this.router.navigateByUrl(url + '?editable=true');
   }
 
-  decommissionCenter(data: any, url: string, idKey: string) {    
+  approveRegistredMisp(data: any, url: string, idKey: string) {    
     if (this.router.url.indexOf('single-view') >= 0) {
       this.auditService.audit(10, 'ADM-085', {
         buttonName: 'decommission',
@@ -202,17 +202,17 @@ export class CommonService {
     this.confirmationPopup('decommission', data.name).afterClosed().subscribe(res => {
       if (res) {
         this.auditService.audit(18, 'ADM-098', 'decommission');
-        const centerObject = this.mapDataToObject(data);        
-        centerObject.mispStatus ="approved"
-        console.log(centerObject);
-        this.approveMisp('decommission',centerObject);
+        const mispObject = this.mapDataToObject(data);        
+        mispObject.mispStatus ="approved"
+        console.log(mispObject);
+        this.approveMisp('decommission',mispObject);
       } else {
         this.auditService.audit(19, 'ADM-099', 'decommission');
       }
     });
   }
 
-  activateCenter(data: any, url: string, idKey: string) {
+  activateMisp(data: any, url: string, idKey: string) {
     if (this.router.url.indexOf('single-view') >= 0) {
       this.auditService.audit(10, 'ADM-086', {
         buttonName: 'activate',
@@ -231,18 +231,18 @@ export class CommonService {
     this.confirmationPopup('activate', data.name).afterClosed().subscribe(res => {
       if (res) {
         this.auditService.audit(18, 'ADM-100', 'activate');
-        const centerObject = this.mapDataToObject(data);
-        centerObject.isActive = true;
-        centerObject.mispStatus ="Active"
-        console.log(centerObject);
-        this.updateMisp('activate', centerObject);
+        const mispObject = this.mapDataToObject(data);
+        mispObject.isActive = true;
+        mispObject.mispStatus ="Active"
+        console.log(mispObject);
+        this.updateMisp('activate', mispObject);
       } else {
         this.auditService.audit(19, 'ADM-101', 'activate');
       }
     });
   }
 
-  deactivateCenter(data: any, url: string, idKey: string) {
+  deactivateMisp(data: any, url: string, idKey: string) {
     if (this.router.url.indexOf('single-view') >= 0) {
       console.log(this.router.url.split('/'));
       this.auditService.audit(10, 'ADM-087', {
@@ -262,11 +262,11 @@ export class CommonService {
     this.confirmationPopup('deactivate', data.name).afterClosed().subscribe(res => {
       if (res) {
         this.auditService.audit(18, 'ADM-102', 'deactivate');
-        const centerObject = this.mapDataToObject(data);
-        centerObject.isActive = false;
-        centerObject.mispStatus = "De-Active";
-        console.log(centerObject);
-        this.updateMisp('deactivate', centerObject);
+        const mispObject = this.mapDataToObject(data);
+        mispObject.isActive = false;
+        mispObject.mispStatus = "De-Active";
+        console.log(mispObject);
+        this.updateMisp('deactivate', mispObject);
       } else {
         this.auditService.audit(19, 'ADM-103', 'deactivate');
       }

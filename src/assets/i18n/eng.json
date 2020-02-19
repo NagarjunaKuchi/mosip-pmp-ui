@@ -168,6 +168,8 @@
         "header" : "Policy",
         "name": "Name",
         "desc":"Description",
+        "authPolicies" : "Allowed Auth Types",
+        "allowedKycAttributes" : "Allowed Kyc Attributes",
         "id":"Id",
         "isActive" : "Status",
         "policy-details": "Policy Details",
